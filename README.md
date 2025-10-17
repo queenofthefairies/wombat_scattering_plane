@@ -33,9 +33,9 @@ This utilises the modules `OpenOpt` and `UBmatrix` (courtesy of William Ratcliff
 - use: constrains phi to a fixed value    
 
 ## Limits for Eulerian cradle
--30 < eom < 40
--30 < echi < 90
-0 < ephi < 359
+-30 < eom < 40      
+-30 < echi < 90         
+0 < ephi < 359          
 
 
 
