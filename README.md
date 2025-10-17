@@ -30,7 +30,12 @@ This utilises the modules `OpenOpt` and `UBmatrix` (courtesy of William Ratcliff
 ### calcIdealAngles3
 - input: hkl vector, phi, UB matrix, wavelength, reciprocal lattice params
 - output: 2theta, theta, omega, chi         
-- use: constrains phi to a fixed value      
+- use: constrains phi to a fixed value    
+
+## Limits for Eulerian cradle
+-30 < eom < 40
+-30 < echi < 90
+0 < ephi < 359
 
 
 

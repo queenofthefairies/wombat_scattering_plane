@@ -32,6 +32,11 @@ clino_star = dict(zip(('astar','bstar','cstar','alphastar','betastar','gammastar
 print('clino star')
 print(clino_star)
 
+# calculate B matrix
+clino_Bmatrix = ubmatrix.calcB(clino_star['astar'],clino_star['astar'],clino_star['astar'],
+                               clino_star['alphastar'],clino_star['betastar'],clino_star['gammastar'],
+                               clino_unit_cell_params[2], clino_unit_cell_params[3])
+
 # calculate 2theta of a reflection 
 hkl = [-1,0,5]
 print('hkl: ({0}, {1}, {2})'.format(hkl[0],hkl[1],hkl[2]))
@@ -42,3 +47,13 @@ h1 = [0,0,1]
 h2 = [0,1,0]
 chi, phi = ubmatrix.calcScatteringPlane(h1, h2, clino_UBmatrix, wavelength,clino_star)
 print('chi: {0}    phi: {1}'.format(chi,phi))
+
+# calculate scattering plane
+h1 = [0,0,1]
+h2 = [0,-1,0]
+chi, phi = ubmatrix.calcScatteringPlane(h1, h2, clino_UBmatrix, wavelength,clino_star)
+print('chi: {0}    phi: {1}'.format(chi,phi))
+
+# calculate ideal angles (with omega = 0)
+twotheta, theta, omega, chi, phi = ubmatrix.calcIdealAngles(h1, clino_UBmatrix, clino_Bmatrix, wavelength, clino_star)
+print('omega: {0}   chi: {1}    phi: {2}   2theta: {3}'.format(omega,chi,phi,twotheta))
