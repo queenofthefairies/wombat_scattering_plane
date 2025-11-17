@@ -54,6 +54,13 @@ h2 = [0,-1,0]
 chi, phi = ubmatrix.calcScatteringPlane(h1, h2, clino_UBmatrix, wavelength,clino_star)
 print('chi: {0}    phi: {1}'.format(chi,phi))
 
+
+# calculate scattering plane
+h1 = [1,1,0]
+h2 = [0,0,1]
+chi, phi = ubmatrix.calcScatteringPlane(h1, h2, clino_UBmatrix, wavelength,clino_star)
+print('chi: {0}    phi: {1}'.format(chi,phi))
+
 # calculate ideal angles (with omega = 0)
 twotheta, theta, omega, chi, phi = ubmatrix.calcIdealAngles(h1, clino_UBmatrix, clino_Bmatrix, wavelength, clino_star)
 print('omega: {0}   chi: {1}    phi: {2}   2theta: {3}'.format(omega,chi,phi,twotheta))

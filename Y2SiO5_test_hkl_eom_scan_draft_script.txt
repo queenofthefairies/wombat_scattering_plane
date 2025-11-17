@@ -1,0 +1,580 @@
+samplename Y2SiO5_test hkl 3.00 -2.00 3.00 
+drive echi -29.925 
+drive ephi 115.189 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 -1.00 2.00 
+drive echi -27.617 
+drive ephi 105.867 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 -1.00 2.00 
+drive echi -25.671 
+drive ephi 13.457 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 -1.00 3.00 
+drive echi -25.533 
+drive ephi 63.184 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 -1.00 1.00 
+drive echi -25.396 
+drive ephi 132.038 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 -1.00 3.00 
+drive echi -24.720 
+drive ephi 47.348 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 -1.00 3.00 
+drive echi -24.687 
+drive ephi 78.612 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 -1.00 2.00 
+drive echi -23.347 
+drive ephi 115.498 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 -1.00 3.00 
+drive echi -22.689 
+drive ephi 91.756 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 -1.00 3.00 
+drive echi -22.565 
+drive ephi 33.272 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 -1.00 3.00 
+drive echi -20.305 
+drive ephi 102.057 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 -1.00 2.00 
+drive echi -19.935 
+drive ephi 122.009 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 -1.00 3.00 
+drive echi -18.029 
+drive ephi 109.875 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 -1.00 3.00 
+drive echi -16.045 
+drive ephi 115.807 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 0.00 -1.00 
+drive echi -1.864 
+drive ephi 177.713 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 0.00 0.00 
+drive echi -1.169 
+drive ephi 150.377 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 0.00 0.00 
+drive echi -1.169 
+drive ephi 150.377 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 0.00 1.00 
+drive echi -0.579 
+drive ephi 132.998 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 0.00 1.00 
+drive echi -0.369 
+drive ephi 127.239 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 0.00 2.00 
+drive echi -0.203 
+drive ephi 122.775 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 0.00 2.00 
+drive echi 0.034 
+drive ephi 116.425 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 0.00 1.00 
+drive echi 0.034 
+drive ephi 116.425 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 0.00 3.00 
+drive echi 0.034 
+drive ephi 116.425 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 0.00 3.00 
+drive echi 0.252 
+drive ephi 110.577 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 0.00 2.00 
+drive echi 0.385 
+drive ephi 106.985 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 0.00 3.00 
+drive echi 0.537 
+drive ephi 102.844 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 0.00 2.00 
+drive echi 0.897 
+drive ephi 92.600 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 0.00 1.00 
+drive echi 0.897 
+drive ephi 92.600 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 0.00 3.00 
+drive echi 0.897 
+drive ephi 92.600 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 0.00 3.00 
+drive echi 1.317 
+drive ephi 79.428 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 0.00 2.00 
+drive echi 1.529 
+drive ephi 71.843 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 0.00 3.00 
+drive echi 1.724 
+drive ephi 63.831 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 0.00 2.00 
+drive echi 2.010 
+drive ephi 47.717 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 0.00 3.00 
+drive echi 2.010 
+drive ephi 47.717 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 0.00 2.00 
+drive echi 2.079 
+drive ephi 13.186 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 0.00 1.00 
+drive echi 2.079 
+drive ephi 13.186 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 0.00 3.00 
+drive echi 2.132 
+drive ephi 33.374 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 0.00 2.00 
+drive echi 2.144 
+drive ephi 27.269 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 1.00 3.00 
+drive echi 16.114 
+drive ephi 117.043 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 1.00 3.00 
+drive echi 18.534 
+drive ephi 111.282 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 1.00 2.00 
+drive echi 19.528 
+drive ephi 123.540 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 1.00 3.00 
+drive echi 21.379 
+drive ephi 103.638 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 1.00 2.00 
+drive echi 23.415 
+drive ephi 117.352 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 1.00 1.00 
+drive echi 24.239 
+drive ephi 133.948 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 1.00 3.00 
+drive echi 24.483 
+drive ephi 93.457 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 1.00 3.00 
+drive echi 26.828 
+drive ephi 33.479 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 1.00 3.00 
+drive echi 27.321 
+drive ephi 80.263 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 1.00 2.00 
+drive echi 28.388 
+drive ephi 108.111 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 1.00 3.00 
+drive echi 28.739 
+drive ephi 48.100 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 1.00 3.00 
+drive echi 28.980 
+drive ephi 64.498 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 1.00 2.00 
+drive echi 29.828 
+drive ephi 12.905 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 1.00 0.00 
+drive echi 29.947 
+drive ephi 151.449 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 2.00 3.00 
+drive echi 29.993 
+drive ephi 117.661 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 1.00 1.00 
+drive echi 30.943 
+drive ephi 128.519 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 1.00 -1.00 
+drive echi 33.549 
+drive ephi 178.450 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 2.00 3.00 
+drive echi 33.700 
+drive ephi 111.988 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 1.00 2.00 
+drive echi 34.114 
+drive ephi 93.889 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 1.00 2.00 
+drive echi 35.108 
+drive ephi 27.267 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 2.00 2.00 
+drive echi 35.443 
+drive ephi 124.303 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 2.00 3.00 
+drive echi 37.814 
+drive ephi 104.436 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 1.00 2.00 
+drive echi 38.713 
+drive ephi 73.007 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 1.00 2.00 
+drive echi 39.075 
+drive ephi 48.297 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 2.00 2.00 
+drive echi 40.872 
+drive ephi 118.279 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 1.00 1.00 
+drive echi 40.872 
+drive ephi 118.279 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 3.00 3.00 
+drive echi 40.872 
+drive ephi 118.279 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 1.00 0.00 
+drive echi 40.984 
+drive ephi 151.975 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 2.00 3.00 
+drive echi 42.015 
+drive ephi 94.324 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 2.00 1.00 
+drive echi 42.175 
+drive ephi 134.890 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 2.00 3.00 
+drive echi 44.738 
+drive ephi 33.588 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 3.00 3.00 
+drive echi 44.978 
+drive ephi 112.697 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 2.00 3.00 
+drive echi 45.602 
+drive ephi 81.117 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 3.00 2.00 
+drive echi 46.874 
+drive ephi 125.063 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 2.00 2.00 
+drive echi 47.132 
+drive ephi 109.244 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 2.00 3.00 
+drive echi 47.212 
+drive ephi 48.497 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 2.00 3.00 
+drive echi 47.574 
+drive ephi 65.187 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 1.00 1.00 
+drive echi 48.536 
+drive ephi 12.613 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 2.00 2.00 
+drive echi 48.536 
+drive ephi 12.613 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 2.00 0.00 
+drive echi 49.180 
+drive ephi 152.494 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 3.00 3.00 
+drive echi 49.310 
+drive ephi 105.240 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 2.00 1.00 
+drive echi 50.191 
+drive ephi 129.788 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 3.00 2.00 
+drive echi 52.373 
+drive ephi 119.206 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 2.00 -1.00 
+drive echi 53.013 
+drive ephi 179.153 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 2.00 2.00 
+drive echi 53.511 
+drive ephi 95.204 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 1.00 1.00 
+drive echi 53.511 
+drive ephi 95.204 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 3.00 3.00 
+drive echi 53.511 
+drive ephi 95.204 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 3.00 1.00 
+drive echi 53.607 
+drive ephi 135.821 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 2.00 2.00 
+drive echi 54.512 
+drive ephi 27.266 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 3.00 3.00 
+drive echi 56.195 
+drive ephi 33.702 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 3.00 3.00 
+drive echi 56.949 
+drive ephi 81.989 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 2.00 2.00 
+drive echi 58.123 
+drive ephi 74.220 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 3.00 2.00 
+drive echi 58.264 
+drive ephi 110.384 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 1.00 1.00 
+drive echi 58.503 
+drive ephi 48.908 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 3.00 3.00 
+drive echi 58.503 
+drive ephi 48.908 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 2.00 2.00 
+drive echi 58.503 
+drive ephi 48.908 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 3.00 3.00 
+drive echi 58.805 
+drive ephi 65.897 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -4.00 3.00 2.00 
+drive echi 59.719 
+drive ephi 12.308 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 2.00 0.00 
+drive echi 59.889 
+drive ephi 153.514 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 1.00 0.00 
+drive echi 59.889 
+drive ephi 153.514 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 3.00 0.00 
+drive echi 59.889 
+drive ephi 153.514 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 2.00 1.00 
+drive echi 59.947 
+drive ephi 120.132 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 3.00 1.00 
+drive echi 60.862 
+drive ephi 131.045 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 3.00 3.00 -1.00 
+drive echi 63.004 
+drive ephi 179.826 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 3.00 2.00 
+drive echi 63.871 
+drive ephi 96.543 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -3.00 3.00 2.00 
+drive echi 64.941 
+drive ephi 27.264 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 2.00 1.00 
+drive echi 66.658 
+drive ephi 11.992 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 3.00 2.00 
+drive echi 67.772 
+drive ephi 75.482 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 3.00 2.00 
+drive echi 68.189 
+drive ephi 49.555 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 2.00 3.00 0.00 
+drive echi 68.560 
+drive ephi 154.994 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 3.00 1.00 
+drive echi 68.865 
+drive ephi 121.979 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 2.00 1.00 
+drive echi 69.926 
+drive ephi 97.906 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 2.00 0.00 
+drive echi 73.310 
+drive ephi 156.418 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 2.00 1.00 
+drive echi 73.682 
+drive ephi 50.240 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -2.00 3.00 1.00 
+drive echi 74.494 
+drive ephi 11.318 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 0.00 3.00 1.00 
+drive echi 76.491 
+drive ephi 100.702 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl 1.00 3.00 0.00 
+drive echi 78.271 
+drive ephi 159.102 
+RadCollScan eom -1 0.2 21 1 
+
+samplename Y2SiO5_test hkl -1.00 3.00 1.00 
+drive echi 79.542 
+drive ephi 51.736 
+RadCollScan eom -1 0.2 21 1 
+
