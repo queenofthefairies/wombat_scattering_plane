@@ -47,27 +47,41 @@ hkl = [-1,0,5]
 print('hkl: ({0}, {1}, {2})'.format(hkl[0],hkl[1],hkl[2]))
 print(ubmatrix.calcTwoTheta(hkl, star, wavelength))
 
-wombat_scattering_plane.evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelength, star)
+# have a look at which scattering planes are accessible given the UB matrix
+#wombat_scattering_plane.evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelength, star)
 
-# # calculate scattering plane
-# h1 = [0,0,1]
-# h2 = [0,1,0]
-# chi, phi = ubmatrix.calcScatteringPlane(h1, h2, UB_matrix, wavelength, star)
-# print('chi: {0}    phi: {1}'.format(chi,phi))
+# for the hk0 scattering plane (which is apparently accessible), 
+# see which reflections are visible on Wombat given the Q limits
+# (+-3, +-3, 0) 
+# i.e. hkl_max_component_val = 3
+# plane_name = 'hk0'
+# hkl1 = [1, 0, 0]
+# hkl2 = [0, 1, 0]
+# hkl_max_component_val = 3
+# wom_stth = 13
+# wombat_scattering_plane.accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, 
+#                                                            hkl1, hkl2, hkl_max_component_val,
+#                                                            UB_matrix, wavelength, star, wom_stth)
 
-# # calculate scattering plane
-# h1 = [0,0,1]
-# h2 = [0,-1,0]
-# chi, phi = ubmatrix.calcScatteringPlane(h1, h2, UB_matrix, wavelength, star)
-# print('chi: {0}    phi: {1}'.format(chi,phi))
+# plane_name = 'hkk'
+# hkl1 = [1, 0, 0]
+# hkl2 = [0, 1, 1]
+# hkl_max_component_val = 3
+# wom_stth = 13
+# wombat_scattering_plane.accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, 
+#                                                            hkl1, hkl2, hkl_max_component_val,
+#                                                            UB_matrix, wavelength, star, wom_stth)
 
+# calculate angle between two hkls
+#interplanar_angle = np.arccos(d1 dot d2/ absd1 absd2)
+hkl1 = [1,2,2]
+hkl2 = [2,3,3]
+interplanar_angle = np.arccos(ubmatrix.scalar(*hkl1, *hkl2, star)/(ubmatrix.modvec(*hkl1, star)*ubmatrix.modvec(*hkl2, star)))*180/np.pi
+print('interplanar angle between ({0}, {1}, {2}) and ({3}, {4}, {5}): {6:.3f} degrees'.format(*hkl1, *hkl2, interplanar_angle))
 
-# # calculate scattering plane
-# h1 = [1,1,0]
-# h2 = [0,0,1]
-# chi, phi = ubmatrix.calcScatteringPlane(h1, h2, UB_matrix, wavelength, star)
-# print('chi: {0}    phi: {1}'.format(chi,phi))
-
-# # calculate ideal angles (with omega = 0)
-# twotheta, theta, omega, chi, phi = ubmatrix.calcIdealAngles(h1, UB_matrix, B_matrix, wavelength, star)
-# print('omega: {0}   chi: {1}    phi: {2}   2theta: {3}'.format(omega,chi,phi,twotheta))
+# calculate angle between two hkls
+#interplanar_angle = np.arccos(d1 dot d2/ absd1 absd2)
+hkl1 = [-1,2,2]
+hkl2 = [0,2,2]
+interplanar_angle = np.arccos(ubmatrix.scalar(*hkl1, *hkl2, star)/(ubmatrix.modvec(*hkl1, star)*ubmatrix.modvec(*hkl2, star)))*180/np.pi
+print('interplanar angle between ({0}, {1}, {2}) and ({3}, {4}, {5}): {6:.3f} degrees'.format(*hkl1, *hkl2, interplanar_angle))

@@ -227,8 +227,8 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
     hkl2_array = np.array(hkl2)
 
     hkl_in_plane_to_test_list = []
-    for hkl1_component_val in range(-hkl_max_component_val, hkl_max_component_val):
-        for hkl2_component_val in range(-hkl_max_component_val, hkl_max_component_val):
+    for hkl1_component_val in range(-hkl_max_component_val, hkl_max_component_val+1):
+        for hkl2_component_val in range(-hkl_max_component_val, hkl_max_component_val+1):
             hkl_to_test = hkl1_component_val*hkl1_array + hkl2_component_val*hkl2_array
             hkl_in_plane_to_test_list.append(hkl_to_test)
 
@@ -236,7 +236,8 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
     hkl_in_plane_info_list = []
     for hkl in hkl_in_plane_to_test_list:
         hkl_list = hkl.tolist()
-        twotheta, theta, eom = ubmatrix.calcIdealAngles2(hkl_list, echi, ephi, UB_matrix, wavelength, stars)
+        twotheta, theta, eom = ubmatrix.calcIdealAngles2(hkl_list, echi, ephi, UB_matrix, wavelength, star)
+        #twotheta, theta, eom = ubmatrix.where_in_the_plane_is_my_hkl(hkl_list, echi, ephi, UB_matrix, wavelength, star)
         angle_accessible_bool = is_angle_accessible(twotheta, eom, echi, ephi, wom_stth)
         hkl_in_plane_info_list.append([*hkl_list, twotheta, eom, echi, ephi, wom_stth, angle_accessible_bool])
         if angle_accessible_bool == 0:
@@ -245,13 +246,13 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
             print('reflection {0} {1} {2} in {3} plane is accessible'.format(*hkl_list, plane_name))
 
     # save scattering plane info to excel spreadsheet
-    in_plane_hkl_df = pd.DataFrame(possible_planes_list, columns=['h1','k1','l1', 'twotheta', 'eom', 'echi','ephi', 'Wombat stth', 'Accessible?'])
+    in_plane_hkl_df = pd.DataFrame(hkl_in_plane_info_list, columns=['h1','k1','l1', 'twotheta', 'eom', 'echi','ephi', 'Wombat stth', 'Accessible?'])
     in_plane_hkl_df.to_excel('{0}_{1}_plane_hkl.xlsx'.format(sample_name_prefix, plane_name), index=False)
     print('\nIn-plane hkl info saved to {0}_{1}_plane_hkl.xlsx  \n'.format(sample_name_prefix, plane_name))
 
     # save accessible scattering planes to another spreadsheet
     accessible_in_plane_hkl_df = in_plane_hkl_df[in_plane_hkl_df['Accessible?'] == 1]
-    accessible_in_plane_hkl_df.to_excel('{0}_{1}_plane_accessible_hkl.xlsx'.format(sample_name_prefix, plane_name, index=False)
+    accessible_in_plane_hkl_df.to_excel('{0}_{1}_plane_accessible_hkl.xlsx'.format(sample_name_prefix, plane_name, index=False))
     print('\nAccessible in-plane hkl also saved to {0}_{1}_plane_accessible_hkl.xlsx  \n'.format(sample_name_prefix, plane_name))
 
     return
