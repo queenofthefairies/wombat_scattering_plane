@@ -43,26 +43,35 @@ def hkl_allowed(hkl_list_to_test, space_group_number):
         l = hkl[2]
 
         if space_group_number == 15:
-            if h == 0 or k == 0 or l == 0:
-                if h == 0:
-                    if k != 0:
-                        if k%2 == 0:
-                            # 0kl: k = 2n
-                            hkl_allowed_list.append(hkl)
-                    elif k == 0:
-                        if l%2 == 0:
-                            # 00l: l = 2n
-                            hkl_allowed_list.append(hkl)
-                    if l == 0:
-                        if k%2 == 0:
-                            # 0k0: k = 2n
-                            hkl_allowed_list.append(hkl)
-
-
-            else:
-                if (h + k)%2 == 0:
+            # hkl: h+k = 2n
+            if h != 0 and k !=0 and l != 0:
+                if (h+k)%2 == 0:
                     hkl_allowed_list.append(hkl)
-                
+            # h0l: h, l = 2n
+            if h != 0 and k == 0 and l != 0:
+                if h%2 == 0 and l%2 == 0:
+                    hkl_allowed_list.append(hkl)
+            # 0kl: k = 2n
+            if h == 0 and k != 0 and l != 0:
+                if k%2 == 0:
+                    hkl_allowed_list.append(hkl)
+            # hk0: h + k = 2n
+            if h != 0 and k != 0 and l == 0:
+                if (h+k)%2 == 0:
+                    hkl_allowed_list.append(hkl)
+            # h00: h = 2n
+            if h != 0 and k == 0 and l == 0:
+                if h%2 == 0:
+                    hkl_allowed_list.append(hkl)
+            # 0k0: k = 2n
+            if h == 0 and k != 0 and l == 0:
+                if k%2 == 0:
+                    hkl_allowed_list.append(hkl)
+            # 00l: l = 2n
+            if h == 0 and k == 0 and l != 0:
+                if l%2 == 0:
+                    hkl_allowed_list.append(hkl)
+
     else: 
         print('that space group is not in our list, we should add it!')
         print('hkl allowed list will be empty')
@@ -105,9 +114,9 @@ def accessible_angle_omega_zero_list(sample_name_prefix, hkl_list_to_test, UB_ma
     accessible_hkl_df = pd.DataFrame(accessible_hkl_array, columns=['h','k','l','twotheta','eom','echi','ephi'])
     print('\ngiven wombat_stth = {0} degrees and wavelength = {1} Angstrom, there are {2} accessible reflections with eom = 0 degrees \n'.format(wom_stth, wavelength, len(accessible_hkl_list)))
     accessible_hkl_df = accessible_hkl_df.sort_values(by=['twotheta'])
-    accessible_hkl_df.to_csv('{0}_accessible_hkl.csv'.format(sample_name_prefix), index=False)
-    accessible_hkl_df.to_excel('{0}_accessible_hkl.xlsx'.format(sample_name_prefix), index=False)
-    print('\naccessible hkl saved to {0}_accessible_hkl.csv and {0}_accessible_hkl.xlsx \n'.format(sample_name_prefix))
+    accessible_hkl_df.to_csv('{0}_hkl_accessible.csv'.format(sample_name_prefix), index=False)
+    accessible_hkl_df.to_excel('{0}_hkl_accessible.xlsx'.format(sample_name_prefix), index=False)
+    print('\naccessible hkl saved to {0}_hkl_accessible.csv and {0}_hkl_accessible.xlsx \n'.format(sample_name_prefix))
     
     return accessible_hkl_df
 
@@ -205,8 +214,8 @@ def evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelengt
 
     # save accessible scattering planes to another spreadsheet
     accessible_scattering_planes_df = scattering_planes_df[scattering_planes_df['Accessible?'] == 1]
-    accessible_scattering_planes_df.to_excel('{0}_accessible_scattering_planes.xlsx'.format(sample_name_prefix), index=False)
-    print('\nAccessible planes also saved to {0}_accessible_scattering_planes.xlsx  \n'.format(sample_name_prefix))
+    accessible_scattering_planes_df.to_excel('{0}_scattering_planes_accessible.xlsx'.format(sample_name_prefix), index=False)
+    print('\nAccessible planes also saved to {0}_scattering_planes_accessible.xlsx  \n'.format(sample_name_prefix))
 
     return
 
@@ -237,7 +246,6 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
     for hkl in hkl_in_plane_to_test_list:
         hkl_list = hkl.tolist()
         twotheta, theta, eom = ubmatrix.calcIdealAngles2(hkl_list, echi, ephi, UB_matrix, wavelength, star)
-        #twotheta, theta, eom = ubmatrix.where_in_the_plane_is_my_hkl(hkl_list, echi, ephi, UB_matrix, wavelength, star)
         angle_accessible_bool = is_angle_accessible(twotheta, eom, echi, ephi, wom_stth)
         hkl_in_plane_info_list.append([*hkl_list, twotheta, eom, echi, ephi, wom_stth, angle_accessible_bool])
         if angle_accessible_bool == 0:
@@ -252,7 +260,7 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
 
     # save accessible scattering planes to another spreadsheet
     accessible_in_plane_hkl_df = in_plane_hkl_df[in_plane_hkl_df['Accessible?'] == 1]
-    accessible_in_plane_hkl_df.to_excel('{0}_{1}_plane_accessible_hkl.xlsx'.format(sample_name_prefix, plane_name, index=False))
-    print('\nAccessible in-plane hkl also saved to {0}_{1}_plane_accessible_hkl.xlsx  \n'.format(sample_name_prefix, plane_name))
+    accessible_in_plane_hkl_df.to_excel('{0}_{1}_plane_hkl_accessible.xlsx'.format(sample_name_prefix, plane_name, index=False))
+    print('\nAccessible in-plane hkl also saved to {0}_{1}_plane_hkl_accessible.xlsx  \n'.format(sample_name_prefix, plane_name))
 
     return

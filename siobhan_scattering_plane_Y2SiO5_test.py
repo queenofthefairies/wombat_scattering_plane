@@ -13,11 +13,10 @@ sys.path.append('J:/wombat_instrument_work/scattering_plane_software/OOSuite/Ope
 # Add UBmatrix to path
 sys.path.append('J:/wombat_instrument_work/scattering_plane_software/ubmatrix')
 
-#import oo as openopt
-#from openopt import NLSP
 from oo import NLSP
 import ubmatrix
 
+# import wombat_scattering_plane module
 import wombat_scattering_plane 
 
 # Unit cell params for Y2SiO5
@@ -52,14 +51,17 @@ print('({0}, {1}, {2}) 2theta = {3:.3f}'.format(*hkl, twotheta))
 # # calculate scattering plane
 hkl1 = [2,0,0]
 hkl2 = [0,0,2]
-#chi, phi = ubmatrix.calcScatteringPlane(hkl1, hkl2, Y2SiO5_UBmatrix, wavelength,Y2SiO5_star)
+#chi, phi = ubmatrix.calcScatteringPlane(hkl1, hkl2, UB_matrix, wavelength, star)
 #print('scattering plane of ({0}, {1}, {2}) and ({3}, {4}, {5}) chi: {6:.3f}    phi: {7:.3f}'.format(*hkl1, *hkl2, chi,phi))
 
 # generate list of hkls
 hkl_list_to_test = wombat_scattering_plane.generate_hkl_list(hkl_limits)
 
 # test if hkls allowed by space group
+space_group_number = 15
 hkl_allowed_list = wombat_scattering_plane.hkl_allowed(hkl_list_to_test, space_group_number)
+print('allowed reflections')
+print(hkl_allowed_list)
 
 # calculate list of accessible hkl reflections, keeping eom fixed at zero degrees
 accessible_reflections_df = wombat_scattering_plane.accessible_angle_omega_zero_list(sample_name_prefix, hkl_list_to_test, 
@@ -74,28 +76,28 @@ eom_min = -1
 eom_step = 0.2 
 num_steps = 21
 oscillations_per_step = 1
-wombat_scattering_plane.generate_hkl_eom_scan_script(accessible_reflections, sample_name_prefix, eom_min, eom_step, 
+wombat_scattering_plane.generate_hkl_eom_scan_script(accessible_reflections_df, sample_name_prefix, eom_min, eom_step, 
                                                      num_steps, oscillations_per_step)
 
 # calculate ideal angles (with omega = 0)
-#twotheta, theta, omega, chi, phi = ubmatrix.calcIdealAngles(hkl1, Y2SiO5_UBmatrix, Y2SiO5_Bmatrix, wavelength, Y2SiO5_star)
-#print('for ({0}, {1}, {2}) omega: {3:.3f}   chi: {4:.3f}    phi: {5:.3f}   2theta: {6:.3f}'.format(*hkl1, omega,chi,phi,twotheta))
+twotheta, theta, omega, chi, phi = ubmatrix.calcIdealAngles(hkl1, UB_matrix, B_matrix, wavelength, star)
+print('for ({0}, {1}, {2}) omega: {3:.3f}   chi: {4:.3f}    phi: {5:.3f}   2theta: {6:.3f}'.format(*hkl1, omega,chi,phi,twotheta))
 
 # calculate ideal angles (with omega = 0)
-#twotheta, theta, omega, chi, phi = ubmatrix.calcIdealAngles(hkl2, Y2SiO5_UBmatrix, Y2SiO5_Bmatrix, wavelength, Y2SiO5_star)
-#print('for ({0}, {1}, {2}) omega: {3:.3f}   chi: {4:.3f}    phi: {5:.3f}   2theta: {6:.3f}'.format(*hkl2, omega,chi,phi,twotheta))
+twotheta, theta, omega, chi, phi = ubmatrix.calcIdealAngles(hkl2, UB_matrix, B_matrix, wavelength, star)
+print('for ({0}, {1}, {2}) omega: {3:.3f}   chi: {4:.3f}    phi: {5:.3f}   2theta: {6:.3f}'.format(*hkl2, omega,chi,phi,twotheta))
 
 # calculate angle between two hkls
 #interplanar_angle = np.arccos(d1 dot d2/ absd1 absd2)
-#hkl1 = [-6,0,6]
-#hkl2 = [0,0,2]
-#interplanar_angle = np.arccos(ubmatrix.scalar(*hkl1, *hkl2, Y2SiO5_star)/(ubmatrix.modvec(*hkl1, Y2SiO5_star)*ubmatrix.modvec(*hkl2, Y2SiO5_star)))*180/np.pi
-#print('interplanar angle between ({0}, {1}, {2}) and ({3}, {4}, {5}): {6:.3f} degrees'.format(*hkl1, *hkl2, interplanar_angle))
+hkl1 = [-6,0,6]
+hkl2 = [0,0,2]
+interplanar_angle = np.arccos(ubmatrix.scalar(*hkl1, *hkl2, star)/(ubmatrix.modvec(*hkl1, star)*ubmatrix.modvec(*hkl2, star)))*180/np.pi
+print('interplanar angle between ({0}, {1}, {2}) and ({3}, {4}, {5}): {6:.3f} degrees'.format(*hkl1, *hkl2, interplanar_angle))
 
 # calculate angle between two hkls
 #interplanar_angle = np.arccos(d1 dot d2/ absd1 absd2)
-# hkl1 = [-6,0,6]
-# hkl2 = [-2,0,4]
-# interplanar_angle = np.arccos(ubmatrix.scalar(*hkl1, *hkl2, Y2SiO5_star)/(ubmatrix.modvec(*hkl1, Y2SiO5_star)*ubmatrix.modvec(*hkl2, Y2SiO5_star)))*180/np.pi
-# print('interplanar angle between ({0}, {1}, {2}) and ({3}, {4}, {5}): {6:.3f} degrees'.format(*hkl1, *hkl2, interplanar_angle))
-# print('interplanar angle - 180 {0}'.format(180-interplanar_angle))
+hkl1 = [-6,0,6]
+hkl2 = [-2,0,4]
+interplanar_angle = np.arccos(ubmatrix.scalar(*hkl1, *hkl2, star)/(ubmatrix.modvec(*hkl1, star)*ubmatrix.modvec(*hkl2, star)))*180/np.pi
+print('interplanar angle between ({0}, {1}, {2}) and ({3}, {4}, {5}): {6:.3f} degrees'.format(*hkl1, *hkl2, interplanar_angle))
+print('interplanar angle - 180 {0}'.format(180-interplanar_angle))

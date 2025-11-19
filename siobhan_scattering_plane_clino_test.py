@@ -48,29 +48,29 @@ print('hkl: ({0}, {1}, {2})'.format(hkl[0],hkl[1],hkl[2]))
 print(ubmatrix.calcTwoTheta(hkl, star, wavelength))
 
 # have a look at which scattering planes are accessible given the UB matrix
-#wombat_scattering_plane.evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelength, star)
+wombat_scattering_plane.evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelength, star)
 
 # for the hk0 scattering plane (which is apparently accessible), 
 # see which reflections are visible on Wombat given the Q limits
 # (+-3, +-3, 0) 
 # i.e. hkl_max_component_val = 3
-# plane_name = 'hk0'
-# hkl1 = [1, 0, 0]
-# hkl2 = [0, 1, 0]
-# hkl_max_component_val = 3
-# wom_stth = 13
-# wombat_scattering_plane.accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, 
-#                                                            hkl1, hkl2, hkl_max_component_val,
-#                                                            UB_matrix, wavelength, star, wom_stth)
+plane_name = 'hk0'
+hkl1 = [1, 0, 0]
+hkl2 = [0, 1, 0]
+hkl_max_component_val = 3
+wom_stth = 13
+wombat_scattering_plane.accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, 
+                                                           hkl1, hkl2, hkl_max_component_val,
+                                                           UB_matrix, wavelength, star, wom_stth)
 
-# plane_name = 'hkk'
-# hkl1 = [1, 0, 0]
-# hkl2 = [0, 1, 1]
-# hkl_max_component_val = 3
-# wom_stth = 13
-# wombat_scattering_plane.accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, 
-#                                                            hkl1, hkl2, hkl_max_component_val,
-#                                                            UB_matrix, wavelength, star, wom_stth)
+plane_name = 'hkk'
+hkl1 = [1, 0, 0]
+hkl2 = [0, 1, 1]
+hkl_max_component_val = 3
+wom_stth = 13
+wombat_scattering_plane.accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, 
+                                                           hkl1, hkl2, hkl_max_component_val,
+                                                           UB_matrix, wavelength, star, wom_stth)
 
 # calculate angle between two hkls
 #interplanar_angle = np.arccos(d1 dot d2/ absd1 absd2)
