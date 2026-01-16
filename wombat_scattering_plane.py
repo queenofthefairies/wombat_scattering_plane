@@ -97,7 +97,7 @@ def is_angle_accessible(twotheta, omega, chi, phi, wom_stth):
     return angle_accessible_bool
 
 ################################################################################
-def accessible_angle_omega_zero_list(sample_name_prefix, hkl_list_to_test, UB_matrix, B_matrix, wavelength, star, wom_stth):
+def accessible_hkl_omega_zero_list(sample_name_prefix, hkl_list_to_test, UB_matrix, B_matrix, wavelength, star, wom_stth):
     # go through list of reflections, add those that are accessible to a new list accessible_hkl_list
     accessible_hkl_list = []
     for hkl in hkl_list_to_test:
@@ -217,6 +217,30 @@ def evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelengt
     accessible_scattering_planes_df.to_excel('{0}_scattering_planes_accessible.xlsx'.format(sample_name_prefix), index=False)
     print('\nAccessible planes also saved to {0}_scattering_planes_accessible.xlsx  \n'.format(sample_name_prefix))
 
+    return
+
+################################################################################
+def hkl_in_plane_omega(sample_name_prefix, plane_name, hkl1, hkl2, hkl_to_find, UB_matrix, wavelength, star, wom_stth):
+    ''' For a scattering plane defined by two reciprocal space vectors hkl1 and 
+    hkl2, find the vector hkl in the plane
+    '''
+    echi, ephi = ubmatrix.calcScatteringPlane(hkl1, hkl2, UB_matrix, wavelength, star)
+
+    # test the reflection hkl_to_find out if its actually in the plane defined by hkl1 and hkl2
+    hkl_to_find_is_in_plane = ubmatrix.isInPlane(hkl1, hkl2, hkl_to_find)
+
+    if hkl_to_find_is_in_plane:
+        hkl_list = hkl_to_find.tolist()
+        twotheta, theta, eom = ubmatrix.calcIdealAngles2(hkl_list, echi, ephi, UB_matrix, wavelength, star)
+        angle_accessible_bool = is_angle_accessible(twotheta, eom, echi, ephi, wom_stth)
+        if angle_accessible_bool == 0:
+            print('reflection {0} {1} {2} in {3} plane is not accessible'.format(*hkl_list, plane_name))
+        elif angle_accessible_bool == 1:
+            print('reflection {0} {1} {2} in {3} plane is accessible'.format(*hkl_list, plane_name))
+            print('eom = {0:.3f}, echi = {1:.3f}, ephi = {2:.3f}'.format(eom, echi, ephi))
+    else:
+        print('reflection {0} {1} {2} is NOT in the {3} plane'format(*hkl_list, plane_name))
+        
     return
 
 ################################################################################
