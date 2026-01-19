@@ -129,7 +129,7 @@ def generate_hkl_eom_scan_script(accessible_hkl_df, sample_name_prefix, eom_min,
     # write script
     # for each hkl, change sample name, drive to appropriate echi and ephi value, do an eom scan 
     script_string = ''
-    radcollscan_string = 'RadCollScan eom {0} {1} {2} {3} \n'.format(eom_min, eom_step, num_steps, oscillations_per_step)
+    radcollscan_string = 'radcollscan eom {0} {1} {2} {3} \n'.format(eom_min, eom_step, num_steps, oscillations_per_step)
 
     for index, hkl_info in accessible_hkl_df.iterrows():
         sample_name_str = 'samplename {0} hkl {1:.2f} {2:.2f} {3:.2f} \n'.format(sample_name_prefix, hkl_info['h'], hkl_info['k'], hkl_info['l'])
