@@ -79,7 +79,11 @@ def hkl_allowed(hkl_list_to_test, space_group_number):
 
 ################################################################################
 def is_angle_accessible(twotheta, omega, chi, phi, wom_stth):
-    angle_accessible_bool = 0
+    angle_accessible_bool = False
+    twotheta_accessible_bool = False
+    omega_accessible_bool = False
+    chi_accessible_bool = False
+    phi_accessible_bool = False
     # calculate ideal angles (with omega = 0)
     wom_twotheta_min = wom_stth + 2
     wom_twotheta_max = wom_stth + 118
@@ -88,12 +92,22 @@ def is_angle_accessible(twotheta, omega, chi, phi, wom_stth):
     wom_echi_min = -30
     wom_echi_max = 92.5
     wom_ephi_min = 0
-    wom_ephi_max = 395
+    wom_ephi_max = 359.999
     if twotheta < wom_twotheta_max and twotheta > wom_twotheta_min:
-        if omega < wom_eom_max and omega > wom_eom_min:
-            if chi < wom_echi_max and chi > wom_echi_min:
-                if phi < wom_ephi_max and phi > wom_ephi_min:
-                    angle_accessible_bool = 1
+        twotheta_accessible_bool = True
+
+    if omega < wom_eom_max and omega > wom_eom_min:
+        omega_accessible_bool = True
+
+    if chi < wom_echi_max and chi > wom_echi_min:
+        chi_accessible_bool = True
+    
+    if phi < wom_ephi_max and phi > wom_ephi_min:
+        phi_accessible_bool = 1
+
+    if twotheta_accessible_bool and omega_accessible_bool and chi_accessible_bool and phi_accessible_bool:
+        angle_accessible_bool = True
+
     return angle_accessible_bool
 
 ################################################################################
@@ -189,6 +203,12 @@ def evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelengt
     
     possible_planes_list = []
 
+    # euler cradle limits
+    wom_echi_min = -30
+    wom_echi_max = 92.5
+    wom_ephi_min = 0
+    wom_ephi_max = 359.999
+
     # go through each plane and calculate the eulerian cradle angles required to 
     # put sample into that scattering plane
     # then evaluate whether those eulerian cradle angles are actually accessible
@@ -198,14 +218,18 @@ def evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelengt
         wom_stth = 13 # dummy value
         wom_twotheta = 90 # dummy value
         eom = 0 
+        if echi < wom_echi_min or echi > wom_echi_max:
+            echi = echi%360
+        if ephi < wom_ephi_min or ephi > wom_ephi_max:
+            ephi = ephi%360
         angle_accessible_bool = is_angle_accessible(wom_twotheta, eom, echi, ephi, wom_stth)
         plane_info_to_add = [planes, *vectors[0], *vectors[1], echi, ephi, angle_accessible_bool]
         possible_planes_list.append(plane_info_to_add)
-        
-        if angle_accessible_bool == 0:
-            print('\ndone {0} plane calculation: not accessible \n'.format(planes))
-        elif angle_accessible_bool == 1:
+            
+        if angle_accessible_bool:
             print('\ndone {0} plane calculation: accessible \n'.format(planes))
+        else:
+            print('\ndone {0} plane calculation: not accessible \n'.format(planes))
     
     # save scattering plane info to excel spreadsheet
     scattering_planes_df = pd.DataFrame(possible_planes_list, columns=['Plane name', 'h1','k1','l1', 'h2','k2','l2','echi','ephi', 'Accessible?'])
@@ -213,7 +237,7 @@ def evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelengt
     print('\nScattering plane info saved to {0}_scattering_planes.xlsx  \n'.format(sample_name_prefix))
 
     # save accessible scattering planes to another spreadsheet
-    accessible_scattering_planes_df = scattering_planes_df[scattering_planes_df['Accessible?'] == 1]
+    accessible_scattering_planes_df = scattering_planes_df[scattering_planes_df['Accessible?'] == True]
     accessible_scattering_planes_df.to_excel('{0}_scattering_planes_accessible.xlsx'.format(sample_name_prefix), index=False)
     print('\nAccessible planes also saved to {0}_scattering_planes_accessible.xlsx  \n'.format(sample_name_prefix))
 
@@ -230,8 +254,9 @@ def hkl_in_plane_omega(sample_name_prefix, plane_name, hkl1, hkl2, hkl_to_find, 
     hkl_to_find_is_in_plane = ubmatrix.isInPlane(hkl1, hkl2, hkl_to_find)
 
     if hkl_to_find_is_in_plane:
-        hkl_list = hkl_to_find.tolist()
+        hkl_list = hkl_to_find#.tolist()
         twotheta, theta, eom = ubmatrix.calcIdealAngles2(hkl_list, echi, ephi, UB_matrix, wavelength, star)
+        print('2theta = {0:.2f}, eom = {1:.2f}'.format(twotheta, eom))
         angle_accessible_bool = is_angle_accessible(twotheta, eom, echi, ephi, wom_stth)
         if angle_accessible_bool == 0:
             print('reflection {0} {1} {2} in {3} plane is not accessible'.format(*hkl_list, plane_name))
@@ -239,7 +264,7 @@ def hkl_in_plane_omega(sample_name_prefix, plane_name, hkl1, hkl2, hkl_to_find, 
             print('reflection {0} {1} {2} in {3} plane is accessible'.format(*hkl_list, plane_name))
             print('eom = {0:.3f}, echi = {1:.3f}, ephi = {2:.3f}'.format(eom, echi, ephi))
     else:
-        print('reflection {0} {1} {2} is NOT in the {3} plane'format(*hkl_list, plane_name))
+        print('reflection {0} {1} {2} is NOT in the {3} plane'.format(*hkl_list, plane_name))
         
     return
 
