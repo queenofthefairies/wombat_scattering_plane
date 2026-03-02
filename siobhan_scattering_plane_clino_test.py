@@ -2,6 +2,7 @@
 
 import sys
 import numpy as np
+import os
 
 # Add DerApproximator to path for openopt compatibility
 sys.path.append('J:/wombat_instrument_work/scattering_plane_software/OOSuite/DerApproximator')

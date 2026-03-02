@@ -61,7 +61,7 @@ wombat_scattering_plane.accessible_hkl_in_scattering_plane(sample_name_prefix, p
 # generate list of hkls
 hkl_list_to_test = wombat_scattering_plane.generate_hkl_list(hkl_limits)
 
-test if hkls allowed by space group
+#test if hkls allowed by space group
 space_group_number = 15
 hkl_allowed_list = wombat_scattering_plane.hkl_allowed(hkl_list_to_test, space_group_number)
 print('allowed reflections')
