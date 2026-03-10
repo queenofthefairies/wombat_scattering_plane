@@ -244,25 +244,67 @@ def evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelengt
     return
 
 ################################################################################
+def where_in_the_omega_is_my_hkl(my_hkl, ref_hkl, ref_hkl_omega, wavelength, star):
+    ''' Assuming you are in the scattering plane of my_hkl and ref_hkl, and ref_hkl is at ref_omega, 
+    find the omega for my_hkl
+    '''
+    my_hkl_2theta = ubmatrix.calcTwoTheta(my_hkl, star, wavelength)
+    ref_hkl_2theta = ubmatrix.calcTwoTheta(ref_hkl, star, wavelength)
+
+    diff_2theta = my_hkl_2theta - ref_hkl_2theta
+    if diff_2theta < 0:
+        sign_diff_2theta = -1
+    else:
+        sign_diff_2theta = 1
+    
+    interplanar_angle = np.arccos(ubmatrix.scalar(*my_hkl, *ref_hkl, star)/
+                                  (ubmatrix.modvec(*my_hkl, star)*ubmatrix.modvec(*ref_hkl, star)))*180/np.pi
+
+    my_hkl_omega = -sign_diff_2theta*interplanar_angle + 0.5*(diff_2theta) + ref_hkl_omega
+
+    print('given ({0} {1} {2}) at omega = {3:.2f}, hkl ({4} {5} {6}) is at omega = {7:.2f}'.format(*ref_hkl, ref_hkl_omega,
+                                                                                                   *my_hkl, my_hkl_omega))
+        
+    return my_hkl_omega
+
+################################################################################
 def hkl_in_plane_omega(sample_name_prefix, plane_name, hkl1, hkl2, hkl_to_find, UB_matrix, wavelength, star, wom_stth):
+    # TODO:
+    # this currently doesn't work - the omega angles are wrong
     ''' For a scattering plane defined by two reciprocal space vectors hkl1 and 
     hkl2, find the vector hkl in the plane
     '''
     echi, ephi = ubmatrix.calcScatteringPlane(hkl1, hkl2, UB_matrix, wavelength, star)
+
+    # euler cradle limits
+    wom_eom_min = -179.99999
+    wom_eom_max = 179.99999
+    wom_echi_min = -30
+    wom_echi_max = 92.5
+    wom_ephi_min = 0
+    wom_ephi_max = 359.999
 
     # test the reflection hkl_to_find out if its actually in the plane defined by hkl1 and hkl2
     hkl_to_find_is_in_plane = ubmatrix.isInPlane(hkl1, hkl2, hkl_to_find)
 
     if hkl_to_find_is_in_plane:
         hkl_list = hkl_to_find#.tolist()
+        #if eom < wom_eom_min or echi > wom_eom_max:
+        #    eom = eom%360
+        if echi < wom_echi_min or echi > wom_echi_max:
+            echi = echi%360
+        if ephi < wom_ephi_min or ephi > wom_ephi_max:
+            ephi = ephi%360
         twotheta, theta, eom = ubmatrix.calcIdealAngles2(hkl_list, echi, ephi, UB_matrix, wavelength, star)
+
         print('2theta = {0:.2f}, eom = {1:.2f}'.format(twotheta, eom))
         angle_accessible_bool = is_angle_accessible(twotheta, eom, echi, ephi, wom_stth)
-        if angle_accessible_bool == 0:
-            print('reflection {0} {1} {2} in {3} plane is not accessible'.format(*hkl_list, plane_name))
-        elif angle_accessible_bool == 1:
+        
+        if angle_accessible_bool:
             print('reflection {0} {1} {2} in {3} plane is accessible'.format(*hkl_list, plane_name))
             print('eom = {0:.3f}, echi = {1:.3f}, ephi = {2:.3f}'.format(eom, echi, ephi))
+        else:
+            print('reflection {0} {1} {2} in {3} plane is not accessible'.format(*hkl_list, plane_name))
     else:
         print('reflection {0} {1} {2} is NOT in the {3} plane'.format(*hkl_list, plane_name))
         
@@ -270,6 +312,8 @@ def hkl_in_plane_omega(sample_name_prefix, plane_name, hkl1, hkl2, hkl_to_find, 
 
 ################################################################################
 def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl2, hkl_max_component_val, UB_matrix, wavelength, star, wom_stth):
+    # TODO:
+    # this currently doesn't work - the omega angles are wrong
     ''' For a scattering plane defined by two reciprocal space vectors hkl1 and hkl2, make
     a list of all in-plane reflections accessible on Wombat given eom and twotheta limits
     
@@ -278,6 +322,15 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
     i.e. if plane is hk0 and Y = 4, then reflections from (-4, -4, 0) to (4, 4, 0)
     will be tested'''
     echi, ephi = ubmatrix.calcScatteringPlane(hkl1, hkl2, UB_matrix, wavelength, star)
+    # euler cradle limits
+    wom_echi_min = -30
+    wom_echi_max = 92.5
+    wom_ephi_min = 0
+    wom_ephi_max = 359.999
+    if echi < wom_echi_min or echi > wom_echi_max:
+        echi = echi%360
+    if ephi < wom_ephi_min or ephi > wom_ephi_max:
+        ephi = ephi%360
 
     # make a list of in-plane reflections to test up to a certain maximum Q
     # in order to add the vectors defining the scattering plane together, make them arrays rather than lists
@@ -294,13 +347,22 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
     hkl_in_plane_info_list = []
     for hkl in hkl_in_plane_to_test_list:
         hkl_list = hkl.tolist()
+
         twotheta, theta, eom = ubmatrix.calcIdealAngles2(hkl_list, echi, ephi, UB_matrix, wavelength, star)
+
+        # euler cradle limits
+        wom_eom_min = -179.99999
+        wom_eom_max = 179.99999
+        if eom < wom_eom_min or echi > wom_eom_max:
+            eom = eom%360
+
         angle_accessible_bool = is_angle_accessible(twotheta, eom, echi, ephi, wom_stth)
         hkl_in_plane_info_list.append([*hkl_list, twotheta, eom, echi, ephi, wom_stth, angle_accessible_bool])
-        if angle_accessible_bool == 0:
-            print('reflection {0} {1} {2} in {3} plane is not accessible'.format(*hkl_list, plane_name))
-        elif angle_accessible_bool == 1:
+
+        if angle_accessible_bool:
             print('reflection {0} {1} {2} in {3} plane is accessible'.format(*hkl_list, plane_name))
+        else:
+            print('reflection {0} {1} {2} in {3} plane is not accessible'.format(*hkl_list, plane_name))
 
     # save scattering plane info to excel spreadsheet
     in_plane_hkl_df = pd.DataFrame(hkl_in_plane_info_list, columns=['h1','k1','l1', 'twotheta', 'eom', 'echi','ephi', 'Wombat stth', 'Accessible?'])
@@ -308,7 +370,7 @@ def accessible_hkl_in_scattering_plane(sample_name_prefix, plane_name, hkl1, hkl
     print('\nIn-plane hkl info saved to {0}_{1}_plane_hkl.xlsx  \n'.format(sample_name_prefix, plane_name))
 
     # save accessible scattering planes to another spreadsheet
-    accessible_in_plane_hkl_df = in_plane_hkl_df[in_plane_hkl_df['Accessible?'] == 1]
+    accessible_in_plane_hkl_df = in_plane_hkl_df[in_plane_hkl_df['Accessible?'] == True]
     accessible_in_plane_hkl_df.to_excel('{0}_{1}_plane_hkl_accessible.xlsx'.format(sample_name_prefix, plane_name, index=False))
     print('\nAccessible in-plane hkl also saved to {0}_{1}_plane_hkl_accessible.xlsx  \n'.format(sample_name_prefix, plane_name))
 
