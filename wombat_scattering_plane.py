@@ -247,6 +247,17 @@ def evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelengt
     return
 
 ################################################################################
+def interplanar_angle(hkl1, hkl2, star):
+    ''' Find the interplanar angle between my_hkl and ref_hkl
+    '''
+    interplanar_angle = np.arccos(ubmatrix.scalar(*hkl1, *hkl2, star)/
+                                  (ubmatrix.modvec(*hkl1, star)*ubmatrix.modvec(*hkl2, star)))*180/np.pi
+
+    print('interplanar angle between ({0}, {1}, {2}) and ({3}, {4}, {5}): {6:.3f} degrees'.format(*hkl1, *hkl2, interplanar_angle))
+        
+    return interplanar_angle
+
+################################################################################
 def where_in_the_omega_is_my_hkl(my_hkl, ref_hkl, ref_hkl_omega, wavelength, star):
     ''' Assuming you are in the scattering plane of my_hkl and ref_hkl, and ref_hkl is at ref_omega, 
     find the omega for my_hkl
@@ -260,8 +271,7 @@ def where_in_the_omega_is_my_hkl(my_hkl, ref_hkl, ref_hkl_omega, wavelength, sta
     else:
         sign_diff_2theta = 1
     
-    interplanar_angle = np.arccos(ubmatrix.scalar(*my_hkl, *ref_hkl, star)/
-                                  (ubmatrix.modvec(*my_hkl, star)*ubmatrix.modvec(*ref_hkl, star)))*180/np.pi
+    interplanar_angle = interplanar_angle(my_hkl, ref_hkl, star)
 
     my_hkl_omega = -sign_diff_2theta*interplanar_angle + 0.5*(diff_2theta) + ref_hkl_omega
 
