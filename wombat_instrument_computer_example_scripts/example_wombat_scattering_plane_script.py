@@ -16,7 +16,7 @@ sys.path.append('C:/Users/wombat/ubmatrix')
 sys.path.append('C:/Users/wombat/wombat_scattering_plane')
 
 # add location of Wombat DMCpy scripts
-sys.path.append('C:/Users/wombat/Wombat_DMCpy')
+sys.path.append('C:/Users/wombat/WombatDMCpy')
 
 from wombatDMCpy._tools import readCryFileFromInt3D
 from oo import NLSP
@@ -45,17 +45,17 @@ B_matrix = ubmatrix.calcB(star['astar'],star['astar'],star['astar'],
 wombat_scattering_plane.evaluate_possible_scattering_planes(sample_name_prefix, UB_matrix, wavelength, star)
 
 # calculate 2theta of a reflection 
-hkl_to_calc_list = [[5,0,1],
-                    [5,0,3],
-                    [6,0,2],
-                    [2,0,2],
-                    [4,0,4],
-                    [4,0,2]
+hkl_to_calc_list = [[-5,0,1],
+                    [-5,0,3],
+                    [-6,0,2],
+                    [-2,0,2],
+                    [-4,0,4],
+                    [-4,0,2]
                     ]
-# given echi = 14.19 and ephi = 137.56 puts sample in the h0l plane, find the 2thetas & omegas of the 
+# given echi = 2.14 deg and ephi = 27.33 deg puts sample in the h0l plane, find the 2thetas & omegas of the 
 # reflections in hkl_to_calc_list
-echi_in_plane = 14.19
-ephi_in_plane = 137.56
+echi_in_plane = 2.14
+ephi_in_plane = 27.33
 for hkl in hkl_to_calc_list:
     wombat_scattering_plane.hkl_in_plane_omega_twotheta(hkl, UB_matrix, 
                                                         echi_in_plane, 
